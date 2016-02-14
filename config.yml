@@ -1,0 +1,17 @@
+# Version Snapshot
+
+DataStore:
+
+  # MySQL or File
+  
+  Type: "MySQL"
+  
+  MySQL:
+    Host: ""localhost
+    User: "root"
+    Password: ""
+    Database: "BungeeGroups"
+    Port: 3306
+
+    
+Debug: false
