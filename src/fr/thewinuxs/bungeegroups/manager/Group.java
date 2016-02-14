@@ -45,4 +45,17 @@ public class Group {
 		 */
 	}
 
+	public static Group getGroup(String name) {
+		for (Group g : groups) {
+			if (g.getName().equalsIgnoreCase(name)) {
+				return g;
+			}
+		}
+		return null;
+	}
+	
+	public static boolean exist(String name) {
+		return getGroup(name) != null;
+	}
+
 }
