@@ -45,6 +45,7 @@ public class GPlayer {
 	public void update() {
 		
 		
+		
 	}
 	
 	public static GPlayer getGPlayer(ProxiedPlayer player) {
