@@ -12,6 +12,8 @@ import fr.thewinuxs.bungeegroups.data.TypeData;
 public class Config {
 
 	public static TypeData type = TypeData.FILE;
+	
+	public static boolean debug = false;
 
 	public static void load() {
 		File localFile = new File(Core.getInstance().getDataFolder(),
