@@ -1,3 +1,3 @@
 BungeeGroups 
 
-Snapshot version 0.1.0
+<strong>Version Snapshot 0.1.0</strong>
