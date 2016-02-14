@@ -1,4 +1,4 @@
-package fr.thewinuxs.bungeegroups;
+package fr.thewinuxs.bungeegroups.listener;
 
 import java.util.HashMap;
 
@@ -6,9 +6,10 @@ import fr.thewinuxs.bungeegroups.manager.Group;
 
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.ChatEvent;
+import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
 
-public class Modify {
+public class Modify implements Listener {
 	
 	public static HashMap<ProxiedPlayer, Group> prefix = new HashMap<>();
 	public static HashMap<ProxiedPlayer, Group> suffix = new HashMap<>();

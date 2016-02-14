@@ -1,6 +1,6 @@
 package fr.thewinuxs.bungeegroups.commands;
 
-import fr.thewinuxs.bungeegroups.Modify;
+import fr.thewinuxs.bungeegroups.listener.Modify;
 import fr.thewinuxs.bungeegroups.manager.Group;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.connection.ProxiedPlayer;

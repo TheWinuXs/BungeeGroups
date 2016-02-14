@@ -7,6 +7,7 @@ import fr.thewinuxs.bungeegroups.commands.GroupsCommand;
 import fr.thewinuxs.bungeegroups.config.Config;
 import fr.thewinuxs.bungeegroups.listener.Join;
 import fr.thewinuxs.bungeegroups.listener.Left;
+import fr.thewinuxs.bungeegroups.listener.Modify;
 import fr.thewinuxs.bungeegroups.Metrics;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Command;
@@ -28,8 +29,8 @@ public class Core extends Plugin {
 		}
 
 		Config.load();
-
-		registerListeners(this, new Join(), new Left());
+		
+		registerListeners(this, new Join(), new Left(), new Modify());
 		registerCommands(this, new GroupsCommand("bgroup"));
 
 		try {
