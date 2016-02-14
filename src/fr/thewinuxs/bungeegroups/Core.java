@@ -9,6 +9,7 @@ import fr.thewinuxs.bungeegroups.listener.Join;
 import fr.thewinuxs.bungeegroups.listener.Left;
 import fr.thewinuxs.bungeegroups.listener.Modify;
 import fr.thewinuxs.bungeegroups.Metrics;
+
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Command;
 import net.md_5.bungee.api.plugin.Listener;
@@ -52,14 +53,14 @@ public class Core extends Plugin {
 		return instance;
 	}
 
-	private static void registerListeners(Plugin plugin, Listener... listeners) {
+	private void registerListeners(Plugin plugin, Listener... listeners) {
 		for (Listener listener : listeners) {
 			ProxyServer.getInstance().getPluginManager()
 					.registerListener(plugin, listener);
 		}
 	}
 
-	private static void registerCommands(Plugin plugin, Command... commands) {
+	private void registerCommands(Plugin plugin, Command... commands) {
 		for (Command command : commands) {
 			ProxyServer.getInstance().getPluginManager()
 					.registerCommand(plugin, command);
