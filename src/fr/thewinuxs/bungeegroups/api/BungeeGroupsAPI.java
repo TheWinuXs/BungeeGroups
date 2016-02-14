@@ -43,8 +43,8 @@ public class BungeeGroupsAPI {
 		return Group.getAll();
 	}
 
-	public static void removeAllGroups() {
-		Group.removeAll();
+	public static void deleteAllGroups() {
+		Group.deleteAll();
 	}
 
 }

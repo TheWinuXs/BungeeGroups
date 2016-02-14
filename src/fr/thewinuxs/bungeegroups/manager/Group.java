@@ -12,6 +12,8 @@ public class Group {
 
 	public Group(String name) {
 		this.name = name;
+		setPrefix("");
+		setSuffix("");
 		groups.add(this);
 	}
 
@@ -38,8 +40,35 @@ public class Group {
 	public static ArrayList<Group> getAll() {
 		return groups;
 	}
+	
+	public void init() {
+		// Init the group
+	}
+	
+	public void remove() {
+		// Remove group from data (Not File or MySQL)
+	}
+	
+	public void update() {
+		// Update the group in File or MySQL	
+	}
+	
+	public void create() {
+		// Add a new Group from File or MySQL
+		
+		init();
+	}
+	
+	public void delete() {
+		// Delete the group from File or MySQL
+		
+		remove();
+	}
 
-	public static void removeAll() {
+	public static void deleteAll() {
+		for (Group g : groups) {
+			g.delete();
+		}
 		/*
 		 *  // Remove All groups in file or MySQL
 		 */
