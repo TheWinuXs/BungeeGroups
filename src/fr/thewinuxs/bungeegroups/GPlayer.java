@@ -1,7 +1,8 @@
-package fr.thewinuxs.bungeegroups.manager;
+package fr.thewinuxs.bungeegroups;
 
 import java.util.ArrayList;
 import java.util.UUID;
+
 
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
@@ -51,19 +52,29 @@ public class GPlayer {
 		players.remove(this);
 	}
 
-	public void update() {
+	public void init() {
+
+		// On récupère dans la bdd
 
 	}
 
-/*	public static GPlayer getGPlayer(ProxiedPlayer player) {
-		for (GPlayer gp : players) {
-			if (gp.getPlayer() != null && gp.getPlayer() == player) {
-				return gp;
-			}
+	public void save() {
+		// On save dans la bdd
+
+	}
+
+	public static void saveAll() {
+		for (GPlayer gp : GPlayer.getAll()) {
+			gp.save();
 		}
-		return null;
-	}*/
-	
+	}
+
+	/*
+	 * public static GPlayer getGPlayer(ProxiedPlayer player) { for (GPlayer gp
+	 * : players) { if (gp.getPlayer() != null && gp.getPlayer() == player) {
+	 * return gp; } } return null; }
+	 */
+
 	public static GPlayer getGPlayer(String pname) {
 		for (GPlayer gp : players) {
 			if (gp.getName().equals(pname)) {
@@ -73,6 +84,14 @@ public class GPlayer {
 		return null;
 	}
 
+	public static boolean exist(String pname) {
+		return getGPlayer(pname) != null;
+	}
+
+	public static ArrayList<GPlayer> getAll() {
+		return players;
+	}
+
 	public void setGroup(Group group) {
 		this.groups.set(0, group);
 
@@ -80,6 +99,10 @@ public class GPlayer {
 
 	public boolean isOnline() {
 		return this.online;
+	}
+
+	public static void removeAll() {
+		players.clear();
 	}
 
 }

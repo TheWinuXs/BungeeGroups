@@ -2,7 +2,7 @@ package fr.thewinuxs.bungeegroups.listener;
 
 import java.util.HashMap;
 
-import fr.thewinuxs.bungeegroups.manager.Group;
+import fr.thewinuxs.bungeegroups.Group;
 
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.ChatEvent;

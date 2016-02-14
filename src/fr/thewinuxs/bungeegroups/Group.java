@@ -1,4 +1,4 @@
-package fr.thewinuxs.bungeegroups.manager;
+package fr.thewinuxs.bungeegroups;
 
 import java.util.ArrayList;
 
@@ -49,8 +49,14 @@ public class Group {
 		// Remove group from data (Not File or MySQL)
 	}
 	
-	public void update() {
+	public void save() {
 		// Update the group in File or MySQL	
+	}
+	
+	public static void saveAll() {
+		for (Group g : Group.getAll()) {
+			g.save();
+		}
 	}
 	
 	public void create() {
@@ -85,6 +91,10 @@ public class Group {
 	
 	public static boolean exist(String name) {
 		return getGroup(name) != null;
+	}
+
+	public static void removeAll() {
+		groups.clear();
 	}
 
 }

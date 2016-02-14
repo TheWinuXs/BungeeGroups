@@ -3,8 +3,8 @@ package fr.thewinuxs.bungeegroups.api;
 import java.util.ArrayList;
 
 import net.md_5.bungee.api.connection.ProxiedPlayer;
-import fr.thewinuxs.bungeegroups.manager.GPlayer;
-import fr.thewinuxs.bungeegroups.manager.Group;
+import fr.thewinuxs.bungeegroups.GPlayer;
+import fr.thewinuxs.bungeegroups.Group;
 
 public class BungeeGroupsAPI {
 

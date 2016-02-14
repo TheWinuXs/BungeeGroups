@@ -1,8 +1,8 @@
 package fr.thewinuxs.bungeegroups.commands;
 
+import fr.thewinuxs.bungeegroups.GPlayer;
+import fr.thewinuxs.bungeegroups.Group;
 import fr.thewinuxs.bungeegroups.listener.Modify;
-import fr.thewinuxs.bungeegroups.manager.GPlayer;
-import fr.thewinuxs.bungeegroups.manager.Group;
 import fr.thewinuxs.bungeegroups.utils.MojangAPI;
 
 import net.md_5.bungee.api.CommandSender;
@@ -168,6 +168,38 @@ public class GroupsCommand extends Command {
 											+ gp.getGroup());
 				}
 
+			} else if (args[0].equalsIgnoreCase("save")) {
+				if (!hasPermission(sender, "bgroups.save")) {
+					sender.sendMessage("§cYou don't have permission to execute this command !");
+					return;
+				}
+
+				GPlayer.saveAll();
+				Group.saveAll();
+
+			} else if (args[0].equalsIgnoreCase("reload")
+					|| args[0].equalsIgnoreCase("rl")) {
+				
+				
+				// Save all
+				GPlayer.saveAll();
+				Group.saveAll();
+				
+				// And delete all
+				Group.removeAll();
+				GPlayer.removeAll();
+				
+				/*for () {
+					
+				}*/
+				
+				
+				for (ProxiedPlayer p : ProxyServer.getInstance().getPlayers()) {
+					if (!GPlayer.exist(p.getName())) {
+						new GPlayer(p.getName());
+					}
+				}
+
 			} else {
 				if (!hasPermission(sender, "bgroups.help")) {
 					sender.sendMessage("§cYou don't have permission to execute this command !");
@@ -194,6 +226,7 @@ public class GroupsCommand extends Command {
 		sender.sendMessage(" §6/bgroups suffix <group-name> <suffix>");
 		sender.sendMessage(" §6/bgroups set <player> <group-name>");
 		sender.sendMessage(" §6/bgroups save §8- Save data");
+		sender.sendMessage(" §6/bgroups reload §8- The config and the data");
 		sender.sendMessage("§9---------------------------");
 
 	}

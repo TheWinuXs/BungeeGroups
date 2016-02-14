@@ -1,4 +1,4 @@
-package fr.thewinuxs.bungeegroups.manager;
+package fr.thewinuxs.bungeegroups;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -10,6 +10,11 @@ import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 public class GOfflinePlayer {
 
+	/*
+	 * Class unused
+	 */
+	
+	
 	
 	private String name;
 	private static ArrayList<GOfflinePlayer> players = new ArrayList<>();
