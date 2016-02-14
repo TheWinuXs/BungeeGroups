@@ -6,9 +6,9 @@ public class Group {
 
 	private static ArrayList<Group> groups = new ArrayList<>();
 
-	private String name;
-	private String prefix;
-	private String suffix;
+	String name;
+	String prefix;
+	String suffix;
 
 	public Group(String name) {
 		this.name = name;

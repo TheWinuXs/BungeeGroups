@@ -11,8 +11,8 @@ public class Join implements Listener {
 	@EventHandler(priority = EventPriority.HIGH)
 	public void onJoin(PostLoginEvent e) {
 
-		if (GPlayer.getGPlayer(e.getPlayer()) == null) {
-			new GPlayer(e.getPlayer());
+		if (GPlayer.getGPlayer(e.getPlayer().getName()) == null) {
+			new GPlayer(e.getPlayer().getName());
 		}
 
 	}

@@ -51,15 +51,15 @@ public class MojangAPI {
 		return uuid;
 
 	}
-	
-	
+
 	public static String getNamefromUUID(UUID uuid) throws IOException {
 
 		String name = null;
 
 		try {
 			URL url = new URL(
-					"https://sessionserver.mojang.com/session/minecraft/profile/" + uuid);
+					"https://sessionserver.mojang.com/session/minecraft/profile/"
+							+ uuid);
 
 			HttpURLConnection request = (HttpURLConnection) url
 					.openConnection();
@@ -85,6 +85,44 @@ public class MojangAPI {
 			Core.log.warning("Error with MojangAPI !");
 		}
 		return name;
+	}
+
+	public static String getExactName(String name) {
+		String result = name;
+
+		try {
+			URL url = new URL(
+					"https://api.mojang.com/users/profiles/minecraft/" + name);
+
+			HttpURLConnection request = (HttpURLConnection) url
+					.openConnection();
+			request.connect();
+
+			// Convert to a JSON object to print data
+			JsonParser jp = new JsonParser(); // from gson
+
+			// Convert the input stream to a json element
+			JsonElement root = jp.parse(new InputStreamReader(
+					(InputStream) request.getContent()));
+
+			// May be an array, may be an object.
+			JsonObject rootobj = root.getAsJsonObject();
+
+			result = rootobj.get("name").getAsString();
+
+		} catch (MalformedURLException e) {
+
+			if (Config.debug) {
+				e.printStackTrace();
+			}
+			Core.log.warning("Error with MojangAPI !");
+		} catch (IOException e) {
+			if (Config.debug) {
+				e.printStackTrace();
+			}
+			Core.log.warning("Error with MojangAPI !");
+		}
+		return result;
 	}
 
 }

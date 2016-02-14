@@ -10,8 +10,8 @@ public class Left implements Listener {
 
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void onLeft(PlayerDisconnectEvent e) {
-		if (GPlayer.getGPlayer(e.getPlayer()) != null) {
-			GPlayer.getGPlayer(e.getPlayer()).remove();
+		if (GPlayer.getGPlayer(e.getPlayer().getName()) != null) {
+			GPlayer.getGPlayer(e.getPlayer().getName()).remove();
 		}
 	}
 

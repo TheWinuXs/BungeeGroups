@@ -1,3 +1,3 @@
-BungeeGroups 
+<h1><strong>BungeeGroups</strong></h1> 
 
-<strong>Version Snapshot 0.1.0</strong>
+<strong>Version Snapshot 1.0.0 Soon !</strong>

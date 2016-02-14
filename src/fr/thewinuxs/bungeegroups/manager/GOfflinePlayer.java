@@ -3,6 +3,8 @@ package fr.thewinuxs.bungeegroups.manager;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import fr.thewinuxs.bungeegroups.utils.MojangAPI;
+
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 
@@ -15,6 +17,8 @@ public class GOfflinePlayer {
 	private ArrayList<Group> groups = new ArrayList<>();
 
 	public GOfflinePlayer(String name) {
+		name = MojangAPI.getExactName(name);
+		
 		this.name = name;
 		
 		ProxiedPlayer p = ProxyServer.getInstance().getPlayer(name);
