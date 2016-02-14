@@ -35,4 +35,14 @@ public class Group {
 		this.suffix = suffix;
 	}
 
+	public static ArrayList<Group> getAll() {
+		return groups;
+	}
+
+	public static void removeAll() {
+		/*
+		 *  // Remove All groups in file or MySQL
+		 */
+	}
+
 }
