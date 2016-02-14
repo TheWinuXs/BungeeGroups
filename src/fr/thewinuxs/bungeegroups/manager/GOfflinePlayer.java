@@ -44,6 +44,11 @@ public class GOfflinePlayer {
 		players.remove(this);
 	}
 	
+	public void update() {
+		
+		
+	}
+	
 	public static GOfflinePlayer getGOfflinePlayer(String name) {
 		for (GOfflinePlayer gop : players) {
 			if (gop.equals(name)) {

@@ -42,6 +42,11 @@ public class GPlayer {
 		players.remove(this);
 	}
 	
+	public void update() {
+		
+		
+	}
+	
 	public static GPlayer getGPlayer(ProxiedPlayer player) {
 		for (GPlayer gp : players) {
 			if (gp.getPlayer() == player) {
