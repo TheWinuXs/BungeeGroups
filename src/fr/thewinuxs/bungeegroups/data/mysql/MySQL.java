@@ -4,11 +4,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.UUID;
 
+import net.md_5.bungee.api.ProxyServer;
+
+import fr.thewinuxs.bungeegroups.Core;
 import fr.thewinuxs.bungeegroups.config.Config;
-
-import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 public class MySQL {
 
@@ -80,7 +80,10 @@ public class MySQL {
 			try {
 				con.close();
 			} catch (SQLException e) {
-				e.printStackTrace();
+				if (Config.debug) {
+					e.getStackTrace();
+				}
+				Core.log.warning("Impossible to close the Database connection !");
 			}
 		}
 	}
@@ -94,18 +97,19 @@ public class MySQL {
 			try {
 				con.createStatement()
 						.executeUpdate(
-								"CREATE TABLE IF NOT EXISTS Friends (PlayerName TEXT,PlayerUUID TEXT,FriendName TEXT,FriendUUID TEXT,id int(11) NOT NULL auto_increment,primary KEY (id));");
+								"CREATE TABLE IF NOT EXISTS Players (Name TEXT, UUID TEXT, Group TEXT, id int(11) NOT NULL auto_increment,primary KEY (id));");
 				con.createStatement()
 						.executeUpdate(
-								"CREATE TABLE IF NOT EXISTS Invite (PlayerUUID TEXT,FriendUUID TEXT,id int(11) NOT NULL auto_increment,primary KEY (id));");
+								"CREATE TABLE IF NOT EXISTS Groups (Name TEXT, Prefix TEXT, Suffix TEXT, id int(11) NOT NULL auto_increment,primary KEY (id));");
 				con.createStatement()
 						.executeUpdate(
-								"CREATE TABLE IF NOT EXISTS Players (PlayerName TEXT,PlayerUUID TEXT,id int(11) NOT NULL auto_increment,primary KEY (id));");
-				con.createStatement()
-						.executeUpdate(
-								"CREATE TABLE IF NOT EXISTS Settings (PlayerName TEXT,PlayerUUID TEXT,getMsg int(12),getJoinMsg int(12),getInvites int(12),id int(11) NOT NULL auto_increment,primary KEY (id));");
+								"CREATE TABLE IF NOT EXISTS Permissions (Group TEXT, Permission TEXT, id int(11) NOT NULL auto_increment,primary KEY (id));");
 			} catch (SQLException e) {
-				e.printStackTrace();
+				if (Config.debug) {
+					e.getStackTrace();
+				}
+				Core.log.warning("Impossible to create the Table !");
+
 			}
 		}
 	}
@@ -131,44 +135,6 @@ public class MySQL {
 			e.printStackTrace();
 		}
 		return null;
-	}
-
-	public static boolean isInDatabase(String player) {
-		try {
-			if (!isConnected()) {
-				connect();
-			}
-
-			// Get the UUID with String
-			UUID uuid = UUID.randomUUID();
-
-			ResultSet rs = getResult("SELECT * FROM Players WHERE PlayerUUID = '"
-					+ uuid + "'");
-			if (rs.next()) {
-				return true;
-			}
-
-			return false;
-		} catch (Exception e) {
-			if (Config.debug)
-				e.getStackTrace();
-		}
-
-		return false;
-	}
-
-	public static void addPlayerToDatabase(ProxiedPlayer player) {
-		try {
-			if (!isConnected()) {
-				connect();
-			}
-			update("INSERT INTO Players (PlayerName, PlayerUUID) VALUES ('"
-					+ player.getName() + "', '"
-					+ player.getUniqueId().toString() + "')");
-		} catch (Exception e) {
-			if (Config.debug)
-				e.getStackTrace();
-		}
 	}
 
 }
