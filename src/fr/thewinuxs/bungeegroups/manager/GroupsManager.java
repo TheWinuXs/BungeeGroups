@@ -2,55 +2,66 @@ package fr.thewinuxs.bungeegroups.manager;
 
 import java.sql.ResultSet;
 
+import fr.thewinuxs.bungeegroups.Core;
 import fr.thewinuxs.bungeegroups.Group;
 import fr.thewinuxs.bungeegroups.data.mysql.MySQL;
 
 public class GroupsManager {
 
 	public boolean exist(Group group) {
+		switch (Core.getConfig().getTypeData()) {
+		case MYSQL:
+			try {
 
-		try {
+				if (!MySQL.isConnected()) {
+					MySQL.connect();
+				}
 
-			if (!MySQL.isConnected()) {
-				MySQL.connect();
+				ResultSet result = MySQL.getResult("SELECT Name FROM Groups WHERE Name = '" + group.getName() + "' ");
+				if (result.next()) {
+					return true;
+				}
+				return false;
+
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 
-			ResultSet result = MySQL
-					.getResult("SELECT Name FROM Groups WHERE Name = '"
-							+ group.getName() + "' ");
-			if (result.next()) {
-				return true;
-			}
 			return false;
+		case FILE:
 
-		} catch (Exception e) {
-			e.printStackTrace();
+			// TODO File
+
 		}
-
 		return false;
-
 	}
 
 	public void init(Group group) {
 
-		try {
+		switch (Core.getConfig().getTypeData()) {
+		case MYSQL:
+			try {
 
-			if (!MySQL.isConnected()) {
-				MySQL.connect();
+				if (!MySQL.isConnected()) {
+					MySQL.connect();
+				}
+
+				ResultSet result = MySQL.getResult("SELECT * FROM Groups WHERE Name = '" + group.getName() + "'");
+
+				if (result.next()) {
+					group.setPrefix(result.getString("Prefix"));
+					group.setSuffix(result.getString("Suffix"));
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
+			break;
 
-			ResultSet result = MySQL
-					.getResult("SELECT * FROM Groups WHERE Name = '"
-							+ group.getName() + "'");
+		case FILE:
 
-			if (result.next()) {
-				group.setPrefix(result.getString("Prefix"));
-				group.setSuffix(result.getString("Suffix"));
-			}
+			// TODO File
 
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
-
 	}
 }

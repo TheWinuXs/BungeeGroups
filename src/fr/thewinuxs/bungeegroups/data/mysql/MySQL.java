@@ -35,8 +35,7 @@ public class MySQL {
 
 				try {
 
-					con = DriverManager.getConnection("jdbc:mysql://" + Host
-							+ ":" + Port + "/" + Database, User, Password);
+					con = DriverManager.getConnection("jdbc:mysql://" + Host + ":" + Port + "/" + Database, User, Password);
 
 					System.out.println("MySQL successfully connected !");
 
@@ -105,7 +104,7 @@ public class MySQL {
 				if (Core.getConfig().getDebugMode()) {
 					e.getStackTrace();
 				}
-				Core.log.warning("Impossible to create the Table !");
+				Core.log.warning("Failed to create the Tables !");
 
 			}
 		}

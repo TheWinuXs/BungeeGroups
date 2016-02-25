@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import fr.thewinuxs.bungeegroups.commands.GroupsCommand;
 import fr.thewinuxs.bungeegroups.config.Config;
 import fr.thewinuxs.bungeegroups.data.TypeData;
+import fr.thewinuxs.bungeegroups.data.file.DataFile;
 import fr.thewinuxs.bungeegroups.data.mysql.MySQL;
 import fr.thewinuxs.bungeegroups.listener.Join;
 import fr.thewinuxs.bungeegroups.listener.Left;
@@ -23,10 +24,11 @@ public class Core extends Plugin {
 
 	private static Core instance;
 	public static final Logger log = Logger.getLogger("Minecraft");
-	
+
 	private static Config config;
 	private static GroupsManager gm;
 	private static PlayersManager pm;
+	private static DataFile dataFile;
 
 	@Override
 	public void onEnable() {
@@ -40,9 +42,11 @@ public class Core extends Plugin {
 		config = new Config();
 		config.load();
 
+		dataFile = new DataFile();
+
 		gm = new GroupsManager();
 		pm = new PlayersManager();
-		
+
 		if (config.getTypeData() == TypeData.MYSQL) {
 
 			MySQL.connect();
@@ -73,15 +77,13 @@ public class Core extends Plugin {
 
 	private void registerListeners(Plugin plugin, Listener... listeners) {
 		for (Listener listener : listeners) {
-			ProxyServer.getInstance().getPluginManager()
-					.registerListener(plugin, listener);
+			ProxyServer.getInstance().getPluginManager().registerListener(plugin, listener);
 		}
 	}
 
 	private void registerCommands(Plugin plugin, Command... commands) {
 		for (Command command : commands) {
-			ProxyServer.getInstance().getPluginManager()
-					.registerCommand(plugin, command);
+			ProxyServer.getInstance().getPluginManager().registerCommand(plugin, command);
 		}
 	}
 
@@ -89,9 +91,14 @@ public class Core extends Plugin {
 		return config;
 	}
 
+	public static DataFile getDataFile() {
+		return dataFile;
+	}
+
 	public static GroupsManager getGroupsManager() {
 		return gm;
 	}
+
 	public static PlayersManager getPlayersManager() {
 		return pm;
 	}
