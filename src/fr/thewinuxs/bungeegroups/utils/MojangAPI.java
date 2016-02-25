@@ -13,7 +13,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import fr.thewinuxs.bungeegroups.Core;
-import fr.thewinuxs.bungeegroups.config.Config;
 
 public class MojangAPI {
 
@@ -43,7 +42,7 @@ public class MojangAPI {
 
 		} catch (MalformedURLException e) {
 
-			if (Config.debug) {
+			if (Core.getConfig().getDebugMode()) {
 				e.printStackTrace();
 			}
 			Core.log.warning("Error with MojangAPI !");
@@ -79,7 +78,7 @@ public class MojangAPI {
 
 		} catch (MalformedURLException e) {
 
-			if (Config.debug) {
+			if (Core.getConfig().getDebugMode()) {
 				e.printStackTrace();
 			}
 			Core.log.warning("Error with MojangAPI !");
@@ -112,12 +111,12 @@ public class MojangAPI {
 
 		} catch (MalformedURLException e) {
 
-			if (Config.debug) {
+			if (Core.getConfig().getDebugMode()) {
 				e.printStackTrace();
 			}
 			Core.log.warning("Error with MojangAPI !");
 		} catch (IOException e) {
-			if (Config.debug) {
+			if (Core.getConfig().getDebugMode()) {
 				e.printStackTrace();
 			}
 			Core.log.warning("Error with MojangAPI !");

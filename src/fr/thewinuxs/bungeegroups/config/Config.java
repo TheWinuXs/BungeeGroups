@@ -16,15 +16,15 @@ import fr.thewinuxs.bungeegroups.data.mysql.MySQL;
 
 public class Config {
 
-	static String type = "FILE";
+	private TypeData typedata = TypeData.FILE;
 
-	static File file = new File(Core.getInstance().getDataFolder(),
+	private File file = new File(Core.getInstance().getDataFolder(),
 			"config.yml");
-	static Configuration config;
+	private Configuration config;
 
-	public static boolean debug = false;
+	private boolean debug = false;
 
-	public static void load() {
+	public void load() {
 
 		if (!file.exists()) {
 			InputStream localInputStream = Core.getInstance()
@@ -44,21 +44,22 @@ public class Config {
 			e.printStackTrace();
 			return;
 		}
-		
-		type = config.getString("DataStore.Type").toUpperCase();
-		
+
+		String type = config.getString("DataStore.Type").toUpperCase();
+
 		try {
-			
-			TypeData.setTypeData(TypeData.valueOf(config.getString("DataStore.Type").toUpperCase()));
-		
+
+			TypeData.setTypeData(TypeData.valueOf(type));
+
 		} catch (NullPointerException e) {
-//			e.printStackTrace();
-			System.out.print("The DataStore: " + config.getString("DataStore.Type") + " doesn't exist !");
+			// e.printStackTrace();
+			System.out.print("The DataStore: "
+					+ config.getString("DataStore.Type") + " doesn't exist !");
 			return;
 		}
-		
+
 		if (TypeData.getTypeData() == TypeData.MYSQL) {
-			
+
 			MySQL.Host = config.getString("DataStore.MySQL.Host");
 			MySQL.User = config.getString("DataStore.MySQL.User");
 			MySQL.Password = config.getString("DataStore.MySQL.Password");
@@ -66,6 +67,14 @@ public class Config {
 			MySQL.Port = config.getInt("DataStore.MySQL.Port");
 		}
 
+	}
+
+	public boolean getDebugMode() {
+		return debug;
+	}
+
+	public TypeData getTypeData() {
+		return typedata;
 	}
 
 }

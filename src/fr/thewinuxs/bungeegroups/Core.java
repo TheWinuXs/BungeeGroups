@@ -21,6 +21,8 @@ public class Core extends Plugin {
 
 	private static Core instance;
 	public static final Logger log = Logger.getLogger("Minecraft");
+	
+	private static Config config;
 
 	@Override
 	public void onEnable() {
@@ -31,14 +33,15 @@ public class Core extends Plugin {
 			getDataFolder().mkdir();
 		}
 
-		Config.load();
-		
+		config = new Config();
+		config.load();
+
 		if (TypeData.getTypeData() == TypeData.MYSQL) {
-			
+
 			MySQL.connect();
 			MySQL.createTable();
 		}
-		
+
 		registerListeners(this, new Join(), new Left(), new Modify());
 		registerCommands(this, new GroupsCommand("bgroup"));
 
@@ -73,6 +76,10 @@ public class Core extends Plugin {
 			ProxyServer.getInstance().getPluginManager()
 					.registerCommand(plugin, command);
 		}
+	}
+
+	public static Config getConfig() {
+		return config;
 	}
 
 }

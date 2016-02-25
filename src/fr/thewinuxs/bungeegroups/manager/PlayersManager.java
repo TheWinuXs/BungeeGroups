@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.util.UUID;
 
 import net.md_5.bungee.api.connection.ProxiedPlayer;
-import fr.thewinuxs.bungeegroups.config.Config;
+import fr.thewinuxs.bungeegroups.Core;
 import fr.thewinuxs.bungeegroups.data.mysql.MySQL;
 
 public class PlayersManager {
@@ -27,7 +27,7 @@ public class PlayersManager {
 
 			return false;
 		} catch (Exception e) {
-			if (Config.debug)
+			if (Core.getConfig().getDebugMode())
 				e.getStackTrace();
 		}
 
@@ -43,7 +43,7 @@ public class PlayersManager {
 					+ player.getName() + "', '"
 					+ player.getUniqueId().toString() + "')");
 		} catch (Exception e) {
-			if (Config.debug)
+			if (Core.getConfig().getDebugMode())
 				e.getStackTrace();
 		}
 	}

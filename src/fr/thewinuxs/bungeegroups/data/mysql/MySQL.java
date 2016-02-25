@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import fr.thewinuxs.bungeegroups.Core;
-import fr.thewinuxs.bungeegroups.config.Config;
 
 public class MySQL {
 
@@ -60,7 +59,7 @@ public class MySQL {
 						System.out.println("* Plugin BungeeGroups Disabling.*");
 						System.out.println("*********************************");
 
-						if (Config.debug) {
+						if (Core.getConfig().getDebugMode()) {
 							e.getStackTrace();
 						}
 
@@ -78,7 +77,7 @@ public class MySQL {
 			try {
 				con.close();
 			} catch (SQLException e) {
-				if (Config.debug) {
+				if (Core.getConfig().getDebugMode()) {
 					e.getStackTrace();
 				}
 				Core.log.warning("Impossible to close the Database connection !");
@@ -103,7 +102,7 @@ public class MySQL {
 						.executeUpdate(
 								"CREATE TABLE IF NOT EXISTS Permissions (Group TEXT, Permission TEXT, id int(11) NOT NULL auto_increment,primary KEY (id));");
 			} catch (SQLException e) {
-				if (Config.debug) {
+				if (Core.getConfig().getDebugMode()) {
 					e.getStackTrace();
 				}
 				Core.log.warning("Impossible to create the Table !");
