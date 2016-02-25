@@ -12,8 +12,6 @@ public class GPlayer {
 	private ProxiedPlayer player;
 	private String name;
 	private ArrayList<Group> groups = new ArrayList<>();
-	private String prefix;
-	private String suffix;
 	private boolean online = false;
 
 	public GPlayer(String name) {
@@ -44,14 +42,6 @@ public class GPlayer {
 		return (this.groups.get(0) != null) ? this.groups.get(0) : null;
 	}
 
-	public String getPrefix() {
-		return prefix;
-	}
-
-	public String getSuffix() {
-		return suffix;
-	}
-
 	public void remove() {
 		players.remove(this);
 	}
@@ -63,6 +53,7 @@ public class GPlayer {
 	}
 
 	public void save() {
+		
 		// On save dans la bdd
 
 	}
