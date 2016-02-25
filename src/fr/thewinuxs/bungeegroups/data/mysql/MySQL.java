@@ -5,8 +5,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import net.md_5.bungee.api.ProxyServer;
-
 import fr.thewinuxs.bungeegroups.Core;
 import fr.thewinuxs.bungeegroups.config.Config;
 

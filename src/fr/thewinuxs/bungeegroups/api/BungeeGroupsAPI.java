@@ -9,38 +9,72 @@ import fr.thewinuxs.bungeegroups.Group;
 public class BungeeGroupsAPI {
 
 	public static Group getGroup(ProxiedPlayer player) {
-		return (GPlayer.getGPlayer(player.getName()) != null) ? GPlayer
-				.getGPlayer(player.getName()).getGroup() : null;
+		if (player == null)
+			throw new NullPointerException("Player cannot be null !");
+		GPlayer gp = GPlayer.getGPlayer(player.getName());
+		if (gp == null)
+			gp = new GPlayer(player.getName());
+		return gp.getGroup();
 	}
 
-	public static Group getGroup(String player) {
-		return (GPlayer.getGPlayer(player) != null) ? GPlayer
-				.getGPlayer(player).getGroup() : null;
+	@SuppressWarnings("unused")
+	public static Group getGroup(String player) {	
+		if (player == null || player.isEmpty())
+			throw new NullPointerException("Player cannot be null or empty !");
+		GPlayer gp = GPlayer.getGPlayer(player);
+		if (gp == null)
+			gp = new GPlayer(player);
+		if (gp == null)
+			throw new NullPointerException("Player doesn't exist");
+		return gp.getGroup();
 	}
 
+	@SuppressWarnings("unused")
 	public static void setGroup(ProxiedPlayer player, String name) {
-		if (GPlayer.getGPlayer(player.getName()) != null)
-			if (Group.getGroup(name) != null) {
-				GPlayer.getGPlayer(player.getName()).setGroup(
-						Group.getGroup(name));
-			}
+		GPlayer gp = GPlayer.getGPlayer(player.getName());
+		if (gp == null)
+			gp = new GPlayer(player.getName());
+		if (gp == null)
+			throw new NullPointerException("Player doesn't exist !");
+		Group group = Group.getGroup(name);
+		if (group == null)
+			group = new Group(name);
+		if (group == null)
+			throw new NullPointerException("Group doesn't exist !");
+		gp.setGroup(group);
 	}
 
+	@SuppressWarnings("unused")
 	public static void setGroup(String player, String name) {
-		if (GPlayer.getGPlayer(player) != null)
-			if (Group.getGroup(name) != null) {
-				GPlayer.getGPlayer(player).setGroup(Group.getGroup(name));
-			}
+		GPlayer gp = GPlayer.getGPlayer(player);
+		if (gp == null)
+			gp = new GPlayer(player);
+		if (gp == null)
+			throw new NullPointerException("Player doesn't exist !");
+		Group group = Group.getGroup(name);
+		if (group == null)
+			group = new Group(name);
+		if (group == null)
+			throw new NullPointerException("Group doesn't exist !");
+		gp.setGroup(group);
 	}
 
 	public static ArrayList<Group> getGroups(ProxiedPlayer player) {
-		return (GPlayer.getGPlayer(player.getName()) != null) ? GPlayer
-				.getGPlayer(player.getName()).getGroups() : null;
+		if (player == null)
+			throw new NullPointerException("Player cannot be null !");
+		GPlayer gp = GPlayer.getGPlayer(player.getName());
+		if (gp == null)
+			gp = new GPlayer(player.getName());
+		return gp.getGroups();
 	}
 
 	public static ArrayList<Group> getGroups(String player) {
-		return (GPlayer.getGPlayer(player) != null) ? GPlayer
-				.getGPlayer(player).getGroups() : null;
+		if (player == null || player.isEmpty())
+			throw new NullPointerException("Player cannot be null or empty !");
+		GPlayer gp = GPlayer.getGPlayer(player);
+		if (gp == null)
+			gp = new GPlayer(player);
+		return gp.getGroups();
 	}
 
 	public static ArrayList<Group> getAllGroups() {

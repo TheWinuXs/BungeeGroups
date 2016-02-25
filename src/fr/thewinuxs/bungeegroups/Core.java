@@ -5,6 +5,8 @@ import java.util.logging.Logger;
 
 import fr.thewinuxs.bungeegroups.commands.GroupsCommand;
 import fr.thewinuxs.bungeegroups.config.Config;
+import fr.thewinuxs.bungeegroups.data.TypeData;
+import fr.thewinuxs.bungeegroups.data.mysql.MySQL;
 import fr.thewinuxs.bungeegroups.listener.Join;
 import fr.thewinuxs.bungeegroups.listener.Left;
 import fr.thewinuxs.bungeegroups.listener.Modify;
@@ -30,6 +32,12 @@ public class Core extends Plugin {
 		}
 
 		Config.load();
+		
+		if (TypeData.getTypeData() == TypeData.MYSQL) {
+			
+			MySQL.connect();
+			MySQL.createTable();
+		}
 		
 		registerListeners(this, new Join(), new Left(), new Modify());
 		registerCommands(this, new GroupsCommand("bgroup"));

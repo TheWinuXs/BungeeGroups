@@ -3,15 +3,27 @@
 DataStore:
 
   # MySQL or File
+<<<<<<< HEAD
   
   Type: "MySQL"
   
   MySQL:
     Host: ""localhost
+=======
+
+  Type: "MySQL"
+
+  MySQL:
+    Host: "localhost"
+>>>>>>> 8457daaf112858ef3670afd1a1255c1638aa9ea1
     User: "root"
     Password: ""
     Database: "BungeeGroups"
     Port: 3306
 
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 8457daaf112858ef3670afd1a1255c1638aa9ea1
 Debug: false
