@@ -1,8 +1,6 @@
 package fr.thewinuxs.bungeegroups;
 
 import java.util.ArrayList;
-import java.util.UUID;
-
 
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
@@ -11,21 +9,19 @@ public class GPlayer {
 
 	private static ArrayList<GPlayer> players = new ArrayList<>();
 
-	ProxiedPlayer player;
-	String name;
-	UUID uuid;
-	ArrayList<Group> groups = new ArrayList<>();
-	String prefix;
-	String suffix;
-	boolean online = false;
+	private ProxiedPlayer player;
+	private String name;
+	private ArrayList<Group> groups = new ArrayList<>();
+	private String prefix;
+	private String suffix;
+	private boolean online = false;
 
-	public GPlayer(String pname) {
-		this.name = pname;
-		this.uuid = player.getUniqueId();
+	public GPlayer(String name) {
+		this.name = name;
 
-		ProxiedPlayer p = ProxyServer.getInstance().getPlayer(name);
-		if (p != null) {
-			this.player = p;
+		ProxiedPlayer player = ProxyServer.getInstance().getPlayer(name);
+		if (player != null) {
+			this.player = player;
 			this.online = true;
 		}
 
@@ -46,6 +42,14 @@ public class GPlayer {
 
 	public Group getGroup() {
 		return (this.groups.get(0) != null) ? this.groups.get(0) : null;
+	}
+
+	public String getPrefix() {
+		return prefix;
+	}
+
+	public String getSuffix() {
+		return suffix;
 	}
 
 	public void remove() {

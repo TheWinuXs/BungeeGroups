@@ -179,21 +179,21 @@ public class GroupsCommand extends Command {
 
 			} else if (args[0].equalsIgnoreCase("reload")
 					|| args[0].equalsIgnoreCase("rl")) {
-				
-				
+
 				// Save all
 				GPlayer.saveAll();
 				Group.saveAll();
-				
+
 				// And delete all
 				Group.removeAll();
 				GPlayer.removeAll();
-				
-				/*for () {
-					
-				}*/
-				
-				
+
+				/*
+				 * for () {
+				 * 
+				 * }
+				 */
+
 				for (ProxiedPlayer p : ProxyServer.getInstance().getPlayers()) {
 					if (!GPlayer.exist(p.getName())) {
 						new GPlayer(p.getName());
