@@ -16,7 +16,7 @@ import fr.thewinuxs.bungeegroups.data.mysql.MySQL;
 
 public class Config {
 
-	private TypeData typedata = TypeData.FILE;
+	private TypeData typedata;
 
 	private File file = new File(Core.getInstance().getDataFolder(),
 			"config.yml");
@@ -25,6 +25,8 @@ public class Config {
 	private boolean debug = false;
 
 	public void load() {
+		
+		typedata.setTypeData(TypeData.FILE);
 
 		if (!file.exists()) {
 			InputStream localInputStream = Core.getInstance()
@@ -49,7 +51,7 @@ public class Config {
 
 		try {
 
-			TypeData.setTypeData(TypeData.valueOf(type));
+			typedata.setTypeData(TypeData.valueOf(type));
 
 		} catch (NullPointerException e) {
 			// e.printStackTrace();
@@ -58,7 +60,7 @@ public class Config {
 			return;
 		}
 
-		if (TypeData.getTypeData() == TypeData.MYSQL) {
+		if (typedata == TypeData.MYSQL) {
 
 			MySQL.Host = config.getString("DataStore.MySQL.Host");
 			MySQL.User = config.getString("DataStore.MySQL.User");
@@ -74,7 +76,7 @@ public class Config {
 	}
 
 	public TypeData getTypeData() {
-		return typedata;
+		return typedata.getTypeData();
 	}
 
 }

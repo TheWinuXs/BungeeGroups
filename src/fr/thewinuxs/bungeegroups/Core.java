@@ -36,7 +36,7 @@ public class Core extends Plugin {
 		config = new Config();
 		config.load();
 
-		if (TypeData.getTypeData() == TypeData.MYSQL) {
+		if (config.getTypeData() == TypeData.MYSQL) {
 
 			MySQL.connect();
 			MySQL.createTable();
