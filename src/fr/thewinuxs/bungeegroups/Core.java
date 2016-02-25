@@ -10,6 +10,8 @@ import fr.thewinuxs.bungeegroups.data.mysql.MySQL;
 import fr.thewinuxs.bungeegroups.listener.Join;
 import fr.thewinuxs.bungeegroups.listener.Left;
 import fr.thewinuxs.bungeegroups.listener.Modify;
+import fr.thewinuxs.bungeegroups.manager.GroupsManager;
+import fr.thewinuxs.bungeegroups.manager.PlayersManager;
 import fr.thewinuxs.bungeegroups.Metrics;
 
 import net.md_5.bungee.api.ProxyServer;
@@ -23,6 +25,8 @@ public class Core extends Plugin {
 	public static final Logger log = Logger.getLogger("Minecraft");
 	
 	private static Config config;
+	private static GroupsManager gm;
+	private static PlayersManager pm;
 
 	@Override
 	public void onEnable() {
@@ -36,6 +40,9 @@ public class Core extends Plugin {
 		config = new Config();
 		config.load();
 
+		gm = new GroupsManager();
+		pm = new PlayersManager();
+		
 		if (config.getTypeData() == TypeData.MYSQL) {
 
 			MySQL.connect();
@@ -80,6 +87,13 @@ public class Core extends Plugin {
 
 	public static Config getConfig() {
 		return config;
+	}
+
+	public static GroupsManager getGroupsManager() {
+		return gm;
+	}
+	public static PlayersManager getPlayersManager() {
+		return pm;
 	}
 
 }

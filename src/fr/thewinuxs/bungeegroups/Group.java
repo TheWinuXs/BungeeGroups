@@ -2,6 +2,8 @@ package fr.thewinuxs.bungeegroups;
 
 import java.util.ArrayList;
 
+import fr.thewinuxs.bungeegroups.data.TypeData;
+
 public class Group {
 
 	private static ArrayList<Group> groups = new ArrayList<>();
@@ -15,6 +17,7 @@ public class Group {
 		setPrefix("");
 		setSuffix("");
 		groups.add(this);
+		init();
 	}
 
 	public String getName() {
@@ -37,47 +40,72 @@ public class Group {
 		this.suffix = suffix;
 	}
 
+	/*
+	 * Get all the groups loaded
+	 */
 	public static ArrayList<Group> getAll() {
 		return groups;
 	}
-	
+
+	/*
+	 * Init the group
+	 */
 	public void init() {
-		// Init the group
+		// TODO Get in MySQL or in File
+		boolean exist = Core.getGroupsManager().exist(this);
+		if (!exist) {
+			create();
+		}
+		
+		Core.getGroupsManager().init(this);
+		
 	}
-	
-	public void remove() {
-		// Remove group from data (Not File or MySQL)
-	}
-	
+
+	/*
+	 * Save this group
+	 */
 	public void save() {
-		// Update the group in File or MySQL	
+		// Update the group in File or MySQL
 	}
-	
+
+	/*
+	 * Save all the group
+	 */
 	public static void saveAll() {
 		for (Group g : Group.getAll()) {
 			g.save();
 		}
 	}
-	
+
+	/*
+	 * Create the group
+	 */
 	public void create() {
-		// Add a new Group from File or MySQL
+		// Add a new Group in File or MySQL
+
 		
-		init();
 	}
-	
+
 	public void delete() {
-		// Delete the group from File or MySQL
-		
+		if (Core.getConfig().getTypeData() == TypeData.MYSQL) {
+			// TODO Delete the group in the MySQL database
+		} else {
+			// TODO Else delete the group in the file
+		}
+
 		remove();
 	}
 
 	public static void deleteAll() {
 		for (Group g : groups) {
+			if (Core.getConfig().getTypeData() == TypeData.MYSQL) {
+				// TODO Delete the group in the MySQL database
+			} else {
+				// TODO Else delete the group in the file
+			}
+
 			g.delete();
 		}
-		/*
-		 *  // Remove All groups in file or MySQL
-		 */
 	}
 
 	public static Group getGroup(String name) {
@@ -88,9 +116,13 @@ public class Group {
 		}
 		return null;
 	}
-	
+
 	public static boolean exist(String name) {
 		return getGroup(name) != null;
+	}
+
+	public void remove() {
+		groups.remove(this);
 	}
 
 	public static void removeAll() {
