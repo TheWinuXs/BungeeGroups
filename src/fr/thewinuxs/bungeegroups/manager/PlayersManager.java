@@ -8,8 +8,7 @@ import fr.thewinuxs.bungeegroups.Core;
 import fr.thewinuxs.bungeegroups.data.mysql.MySQL;
 
 public class PlayersManager {
-	
-	
+
 	public static boolean isInDatabase(String player) {
 		try {
 			if (!MySQL.isConnected()) {
@@ -19,8 +18,7 @@ public class PlayersManager {
 			// Get the UUID with String
 			UUID uuid = UUID.randomUUID();
 
-			ResultSet rs = MySQL.getResult("SELECT * FROM Players WHERE PlayerUUID = '"
-					+ uuid + "'");
+			ResultSet rs = MySQL.getResult("SELECT * FROM Players WHERE PlayerUUID = '" + uuid + "'");
 			if (rs.next()) {
 				return true;
 			}
@@ -39,8 +37,7 @@ public class PlayersManager {
 			if (!MySQL.isConnected()) {
 				MySQL.connect();
 			}
-			MySQL.update("INSERT INTO Players (PlayerName, PlayerUUID) VALUES ('"
-					+ player.getName() + "', '"
+			MySQL.update("INSERT INTO Players (PlayerName, PlayerUUID) VALUES ('" + player.getName() + "', '"
 					+ player.getUniqueId().toString() + "')");
 		} catch (Exception e) {
 			if (Core.getConfig().getDebugMode())

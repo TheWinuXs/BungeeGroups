@@ -53,7 +53,7 @@ public class GPlayer {
 	}
 
 	public void save() {
-		
+
 		// On save dans la bdd
 
 	}

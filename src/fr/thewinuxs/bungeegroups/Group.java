@@ -1,6 +1,7 @@
 package fr.thewinuxs.bungeegroups;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import fr.thewinuxs.bungeegroups.data.TypeData;
 
@@ -11,6 +12,9 @@ public class Group {
 	private String name;
 	private String prefix;
 	private String suffix;
+	private List<?> permissions;
+
+	private List<?> inheritances;
 
 	public Group(String name) {
 		this.name = name;
@@ -56,9 +60,9 @@ public class Group {
 		if (!exist) {
 			create();
 		}
-		
+
 		Core.getGroupsManager().init(this);
-		
+
 	}
 
 	/*
@@ -83,7 +87,6 @@ public class Group {
 	public void create() {
 		// Add a new Group in File or MySQL
 
-		
 	}
 
 	public void delete() {
@@ -127,6 +130,36 @@ public class Group {
 
 	public static void removeAll() {
 		groups.clear();
+	}
+
+	public void setPermissions(List<?> list) {
+		this.permissions = list;
+	}
+
+	public List<?> getPermissions() {
+		return permissions;
+	}
+
+	public void setInheritances(List<?> inheritances) {
+		this.inheritances = inheritances;
+
+	}
+
+	protected List<?> getInheritances() {
+		return inheritances;
+	}
+
+	public ArrayList<Group> getGroupsInheritance() {
+		if (inheritances == null)
+			return null;
+		ArrayList<Group> groups = new ArrayList<>();
+		for (Object inheritance : inheritances) {
+			Group group = Group.getGroup(inheritance + "");
+			if (group != null)
+				groups.add(group);
+		}
+		return null;
+
 	}
 
 }

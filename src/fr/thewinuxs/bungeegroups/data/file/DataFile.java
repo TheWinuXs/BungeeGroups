@@ -30,6 +30,7 @@ public class DataFile {
 			e.printStackTrace();
 		}
 	}
+
 	protected void createFilePermissions() {
 		try {
 			file_permissions.createNewFile();
@@ -37,6 +38,7 @@ public class DataFile {
 			e.printStackTrace();
 		}
 	}
+
 	protected void createFileUsers() {
 		try {
 			file_users.createNewFile();
@@ -44,6 +46,7 @@ public class DataFile {
 			e.printStackTrace();
 		}
 	}
+
 	public void initFile() {
 		if (!file_groups.exists())
 			createFilePermissions();
@@ -51,6 +54,6 @@ public class DataFile {
 			createFileGroups();
 		if (!file_users.exists())
 			createFileUsers();
-		
+
 	}
 }

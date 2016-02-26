@@ -43,6 +43,7 @@ public class Core extends Plugin {
 		config.load();
 
 		dataFile = new DataFile();
+		dataFile.initFile();
 
 		gm = new GroupsManager();
 		pm = new PlayersManager();

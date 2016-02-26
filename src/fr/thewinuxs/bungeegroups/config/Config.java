@@ -18,19 +18,17 @@ public class Config {
 
 	private TypeData typedata;
 
-	private File file = new File(Core.getInstance().getDataFolder(),
-			"config.yml");
+	private File file = new File(Core.getInstance().getDataFolder(), "config.yml");
 	private Configuration config;
 
 	private boolean debug = false;
 
 	public void load() {
-		
+
 		typedata.setTypeData(TypeData.FILE);
 
 		if (!file.exists()) {
-			InputStream localInputStream = Core.getInstance()
-					.getResourceAsStream("config.yml");
+			InputStream localInputStream = Core.getInstance().getResourceAsStream("config.yml");
 			try {
 				Files.copy(localInputStream, file.toPath(), new CopyOption[0]);
 			} catch (IOException localIOException) {
@@ -40,8 +38,7 @@ public class Config {
 		}
 
 		try {
-			config = ConfigurationProvider.getProvider(YamlConfiguration.class)
-					.load(file);
+			config = ConfigurationProvider.getProvider(YamlConfiguration.class).load(file);
 		} catch (IOException e) {
 			e.printStackTrace();
 			return;
@@ -55,8 +52,7 @@ public class Config {
 
 		} catch (NullPointerException e) {
 			// e.printStackTrace();
-			System.out.print("The DataStore: "
-					+ config.getString("DataStore.Type") + " doesn't exist !");
+			System.out.print("The DataStore: " + config.getString("DataStore.Type") + " doesn't exist !");
 			return;
 		}
 

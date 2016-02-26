@@ -1,0 +1,16 @@
+Groups:
+  Default:
+    prefix: "&7"
+    suffix: ""
+    permissions: 
+      - bungeecord.server
+      - bungeecord.list
+    inheritances: []
+    
+  Admin:
+    prefix: "&4[Admin] "
+    suffix: ""
+    permissions: 
+      - bungeecord.admin
+    inheritances:
+      - Default
