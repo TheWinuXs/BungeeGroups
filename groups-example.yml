@@ -6,6 +6,7 @@ Groups:
       - bungeecord.server
       - bungeecord.list
     inheritances: []
+    default: true
     
   Admin:
     prefix: "&4[Admin] "
@@ -14,3 +15,4 @@ Groups:
       - bungeecord.admin
     inheritances:
       - Default
+    default: false

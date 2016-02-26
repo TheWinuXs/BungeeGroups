@@ -1,4 +1,5 @@
 name: BungeeGroups
 author: TheWinuXs
 version: 1.0.0
-main: fr.thewinuxs.bungeegroups.Core
+description: BungeeGroups is for BungeeCord or for replace the Spigot plugin permissions like PermissionEX, GroupManager, etc
+main: fr.thewinuxs.bungeegroups.spigot.Core
